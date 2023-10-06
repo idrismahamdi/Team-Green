@@ -23,16 +23,16 @@ pipeline{
 
         stage('Build application'){
             steps{
-                sh 'npm build'
+                sh 'npm run build'
             }
         }
     
 
-        stage('Deploy'){
-            steps{
-                sh 'serve -s build'
-            }
-        }
+        // stage('Deploy'){
+        //     steps{
+        //         sh 'serve -s build'
+        //     }
+        // }
     }
 
     
