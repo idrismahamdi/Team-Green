@@ -1,12 +1,10 @@
 package com.example.backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name="_user")
 public class User {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +14,16 @@ public class User {
     private String userName;
     @NotNull
     private String password;
+    // todo: add Regex, hashing, salt & pepper
 
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
 
+    public User(){
+        this("unknown user", "unknown password");
+    }
     public int getId() {
         return id;
     }
