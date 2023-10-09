@@ -4,6 +4,12 @@ import com.example.backend.entities.User;
 import com.example.backend.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -17,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/createaccount")
-    public void addUser (@RequestBody User user){
+    public void addUser (@RequestBody User user) throws NoSuchAlgorithmException {
         this.service.createUser(user);
     }
 
@@ -37,10 +43,8 @@ public class UserController {
 //        this.service.removeByUserName(username);
 //        // didn't work, try by id
 //    }
-@DeleteMapping("/deleteaccount/{id}")
-    public void deleteUser(@PathVariable int id){
-        this.service.removeById(id);
-    }
+    @DeleteMapping("/deleteaccount/{id}") public void deleteUser(@PathVariable int id){
+        this.service.removeById(id);}
 
     @GetMapping("/health")
     public String health(){
