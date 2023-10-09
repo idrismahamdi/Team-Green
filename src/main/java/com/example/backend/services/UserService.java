@@ -9,9 +9,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -23,7 +21,8 @@ public class UserService {
         this.repo = repo;
     }
 
-    public void createUser(User user) throws NoSuchAlgorithmException {
+    public Map<String, Boolean> createUser(User user) throws NoSuchAlgorithmException {
+        try{
         String password = user.getPassword();
 
         String hashedPassword = toHexString(getSHA("teamGreen" + password));
@@ -31,6 +30,11 @@ public class UserService {
         user.setPassword(hashedPassword);
 
         User saved = this.repo.save(user);
+
+        return Collections.singletonMap("userCreated", true);}
+        catch (Exception e){
+            return Collections.singletonMap("userCreated", false );
+        }
         //from the front end perspective, do we need this to return anything?
     }
 

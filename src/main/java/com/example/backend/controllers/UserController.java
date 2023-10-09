@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -22,8 +23,8 @@ public class UserController {
     }
 
     @PostMapping("/createaccount")
-    public void addUser (@RequestBody User user) throws NoSuchAlgorithmException {
-        this.service.createUser(user);
+    public Map<String, Boolean> addUser (@RequestBody User user) throws NoSuchAlgorithmException {
+        return this.service.createUser(user);
     }
 
     @PostMapping("/login")
