@@ -2,20 +2,19 @@ package com.example.backend.controllers;
 
 import com.example.backend.entities.User;
 import com.example.backend.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
 public class UserController {
 
     private UserService service;
+
+//    private SessionConfig sessionConfig = new SessionConfig();
 
     public UserController(UserService service){
         super();
@@ -26,6 +25,22 @@ public class UserController {
     public void addUser (@RequestBody User user) throws NoSuchAlgorithmException {
         this.service.createUser(user);
     }
+
+    @PostMapping("/login")
+    public HashMap<String, Boolean> userLogin (@RequestBody User user, HttpSession session) throws NoSuchAlgorithmException {
+        return this.service.userLogin(user, session);
+    }
+
+    @PostMapping("/logout")
+    public boolean userLogout (HttpSession session) throws NoSuchAlgorithmException {
+        return this.service.userLogout(session);
+    }
+
+    @GetMapping("/testsession")
+    public Object getSession(HttpSession session){
+        return session.getAttribute("id") + " : " + session.getAttribute("isLoggedIn");
+    }
+
 
     @GetMapping("/account/{username}")
     public User getUser(@PathVariable String username){
