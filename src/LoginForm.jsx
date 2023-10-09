@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+
+const url = 'http://localhost:4000/users';
 
 export const LoginForm = () => {
 
- const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
+    try{
+      const res = await axios.post(url, {email: userEmail, password: userPassword});
+      console.log(res.data);
+    } catch(error) {
+        console.log(error.response);
+    }
     console.log("submitted the form");
  }
  const [userEmail, setUserEmail] = useState("");
@@ -31,6 +42,7 @@ export const LoginForm = () => {
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
+      <Link to="createAccount"><a>Don't have an account? Sign in here.</a></Link>
     </>
   )
 }
