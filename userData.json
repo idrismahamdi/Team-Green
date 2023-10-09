@@ -14,6 +14,18 @@
       "email": "test2@test.com",
       "password": "test2",
       "id": 3
+    },
+    {
+      "email": "jimmy@jimmy.com",
+      "password": "password",
+      "id": 4
+    }
+  ],
+  "createdAccounts": [
+    {
+      "email": "testconfirm@testconfirm.com",
+      "password": "password",
+      "id": 1
     }
   ]
 }

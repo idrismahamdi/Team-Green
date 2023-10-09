@@ -1,5 +1,5 @@
 import './App.css';
-import CreateAccount from './CreateAccount';
+import {CreateAccount} from './CreateAccount';
 import { LoginForm } from './LoginForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ function App() {
 
       <Routes>
         <Route path="login" element={<LoginForm />} />
-        <Route path="createAccount" element={<CreateAccount />} />
+        <Route path="create-account" element={<CreateAccount />} />
       </Routes>
     </BrowserRouter>
     

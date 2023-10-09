@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import UserFormFields from './UserFormFields';
 
-const CreateAccount = () => {
+const url = 'http://localhost:4000/createdAccounts';
+
+export const CreateAccount = () => {
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const extraFields = (
+    <div className="mb-3">
+      <label className="form-label" htmlFor='confirmPassword'>Confirm Password</label>
+      <input type="password" className="form-control" id="confirmPassword" onChange={event => setConfirmPassword(event.target.value)} value={confirmPassword}/>
+    </div>
+  );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (userPassword !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    try {
+      const res = await axios.post(url, { email: userEmail, password: userPassword });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
+
   return (
-    <div>CreateAccount</div>
-  )
+    <>
+      <form className="p-5" onSubmit={handleSubmit}>
+        <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} extraFields={extraFields} />
+        <button type="submit" className="btn btn-primary">Create Account</button>
+      </form>
+      <Link to="/login">Already have an account? Login here.</Link>
+    </>
+  );
 }
-
-export default CreateAccount
