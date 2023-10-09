@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserFormFields from './UserFormFields';
 
-const url = 'http://localhost:4000/createdAccounts';
+const url = 'http://18.168.101.57:3005/createaccount';
 
 export const CreateAccount = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -24,7 +24,7 @@ export const CreateAccount = () => {
       return;
     }
     try {
-      const res = await axios.post(url, { email: userEmail, password: userPassword });
+      const res = await axios.post(url, { userName: userEmail, password: userPassword });
       console.log(res.data);
     } catch (error) {
       console.log(error.response);
