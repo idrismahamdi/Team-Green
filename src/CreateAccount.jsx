@@ -40,7 +40,7 @@ export const CreateAccount = () => {
         <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} extraFields={extraFields} />
         <button type="submit" className="btn btn-primary">Create Account</button>
       </form>
-      <Link to="/login">Already have an account? Login here.</Link>
+      <Link to="/login" className="p-4">Already have an account? Login here.</Link>
     </>
   );
 }

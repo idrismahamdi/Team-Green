@@ -3,9 +3,12 @@ import {CreateAccount} from './CreateAccount';
 import { LoginForm } from './LoginForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RoutesPage from './RoutesPage';
+import Header from './Header';
 
 function App() {
   return (
+    <>
+    <Header/>
     <BrowserRouter>
 
       <Routes>
@@ -14,7 +17,9 @@ function App() {
         <Route path="routes-page" element={<RoutesPage />} />
       </Routes>
     </BrowserRouter>
+    </>
     
+  
   );
 }
 

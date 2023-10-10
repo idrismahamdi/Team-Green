@@ -29,7 +29,7 @@ export const LoginForm = () => {
         <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} />
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
-      <Link to="/create-account">Don't have an account? Sign in here.</Link>
+      <Link to="/create-account" className="p-4">Don't have an account? Sign in here.</Link>
     </>
   );
 }
