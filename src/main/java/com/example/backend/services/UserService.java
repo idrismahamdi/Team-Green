@@ -53,7 +53,13 @@ public class UserService {
 
     }
 
-
+public boolean userAuthentication (HttpSession session) {
+        try {
+            return (boolean) session.getAttribute("isLoggedIn");
+        } catch(Exception e){
+            return false    ;
+        }
+}
 
     public static String toHexString(byte[] hash)
 
