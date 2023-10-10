@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserFormFields from './UserFormFields';
 
 const url = 'http://18.168.101.57:3005/login';
@@ -9,11 +9,15 @@ export const LoginForm = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(url, { userName: userEmail, password: userPassword });
       console.log(res.data);
+
+      localStorage.setItem("user", JSON.stringify({userName: userEmail}));
+      navigate('/routes-page');
     } catch (error) {
       console.log(error.response);
     }

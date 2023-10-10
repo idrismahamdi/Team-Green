@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserFormFields from './UserFormFields';
+import { useNavigate } from 'react-router-dom';
 
 const url = 'http://18.168.101.57:3005/createaccount';
 
@@ -17,6 +18,7 @@ export const CreateAccount = () => {
     </div>
   );
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userPassword !== confirmPassword) {
@@ -25,7 +27,8 @@ export const CreateAccount = () => {
     }
     try {
       const res = await axios.post(url, { userName: userEmail, password: userPassword });
-      console.log(res.data);
+      console.log(res.data); 
+      navigate('/login');
     } catch (error) {
       console.log(error.response);
     }
