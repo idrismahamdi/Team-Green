@@ -14,14 +14,17 @@ export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
     e.preventDefault();
     try {
       const res = await axios.post(url, { userName: userEmail, password: userPassword });
-      console.log(res.data);
 
       localStorage.setItem("user", JSON.stringify({userName: userEmail}));
-
-      setIsLoggedIn(true);
+      console.log(res.data.userLoggedIn);
+      setIsLoggedIn(res.data.userLoggedIn);
       setUsername(userEmail);
-      navigate('/routes-page');
+      if(res.data.userLoggedIn){ navigate('/routes-page')}else{
+        alert("Not authenticated")
+      }
+     
     } catch (error) {
+      
       console.log(error.response);
     }
   }

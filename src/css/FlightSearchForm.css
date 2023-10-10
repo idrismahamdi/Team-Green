@@ -1,0 +1,14 @@
+.flight-search-form {
+    width: 33%;
+    position: absolute;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.passenger-input {
+    display: flex;
+    gap: 10px;
+}

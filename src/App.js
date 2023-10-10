@@ -6,6 +6,7 @@ import RoutesPage from './RoutesPage';
 import Header from './Header';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import FlightSearchForm from './FlightSearchForm';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function AuthenticatedApp() {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const res = await axios.post('/authenticate');
+        const res = await axios.post('http://18.168.101.57:3005/authenticate');
         setIsLoggedIn(res.data);
         const user = JSON.parse(localStorage.getItem("user"));
         
@@ -52,6 +53,8 @@ function AuthenticatedApp() {
         <Route path="create-account" element={<CreateAccount />} />
         <Route path="login" element={isLoggedIn ? <Navigate to="/routes-page" /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="routes-page" element={<RoutesPage />} />
+        <Route path="flights-search-form" element={<FlightSearchForm />} />
+
       </Routes>
     </>
   );
