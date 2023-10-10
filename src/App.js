@@ -24,6 +24,8 @@ function AuthenticatedApp() {
       try {
         const res = await axios.post('/authenticate');
         setIsLoggedIn(res.data);
+        const user = JSON.parse(localStorage.getItem("user"));
+        
       } catch (error) {
         console.error('Error checking login status:', error);
         setIsLoggedIn(false);
@@ -36,6 +38,7 @@ function AuthenticatedApp() {
     try {
       await axios.post('http://18.168.101.57:3005/logout');
       setIsLoggedIn(false);
+      localStorage.removeItem("user");
       navigate('/login'); // Redirect user to login
     } catch (error) {
       console.error('Error during logout:', error);

@@ -5,7 +5,7 @@ import UserFormFields from './UserFormFields';
 
 const url = 'http://18.168.101.57:3005/login';
 
-export const LoginForm = ({ setIsLoggedIn }) => {
+export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
@@ -19,6 +19,7 @@ export const LoginForm = ({ setIsLoggedIn }) => {
       localStorage.setItem("user", JSON.stringify({userName: userEmail}));
 
       setIsLoggedIn(true);
+      setUsername(userEmail);
       navigate('/routes-page');
     } catch (error) {
       console.log(error.response);
