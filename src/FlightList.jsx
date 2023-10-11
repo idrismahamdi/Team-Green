@@ -16,6 +16,11 @@ const FlightList = () => {
       return 
     }
 
+    const handleBack = (e) => {
+      setSelectedId(0);
+      setShowList(true);
+    }
+
     
   return (
     <>
@@ -25,7 +30,10 @@ const FlightList = () => {
         ) : null
       }
         {selectedId ? 
-        <SelectedFlight id={selectedId}/>
+        <>
+          <SelectedFlight id={selectedId}/>
+          <a href="#" class="btn btn-primary m-4" onClick={(e) => handleBack(e)}>Go back</a>
+        </>
         : null}
     </>
   )
