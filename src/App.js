@@ -24,7 +24,7 @@ function AuthenticatedApp() {
     const checkLoginStatus = async () => {
       try {
         const res = await axios.post('http://18.168.101.57:3005/authenticate');
-        setIsLoggedIn(res.data);
+        setIsLoggedIn(res.data.userLoggedIn);
         const user = JSON.parse(localStorage.getItem("user"));
         
       } catch (error) {
