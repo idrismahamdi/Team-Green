@@ -1,0 +1,43 @@
+.WeatherDiv {
+    padding: 8px;
+    border: solid black;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    background-image: linear-gradient(black, grey);
+    color: white
+}
+
+#weatherIconTemp {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#weatherExtraInfo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#tempText {
+    padding: 0;
+    margin: 0 10px 0 -10px;
+}
+
+#extraInfoText {
+    padding: 0;
+    margin: 0;
+}
