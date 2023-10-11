@@ -1,28 +1,152 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/FlightSearchForm.css';
+import axios from 'axios';
+import Papa from 'papaparse';
+import airports from './flightdata/airports.csv';
 
 const FlightSearchForm = () => {
+    const [airportData, setAirportData] = useState([]);
     const [fromAirport, setFromAirport] = useState('');
     const [toAirport, setToAirport] = useState('');
-    const [date, setDate] = useState('');
+    const [departureDate, setDeparture] = useState('');
+    const [arrivalDate, setArrival] = useState('');
     const [passengers, setPassengers] = useState(1);
+    const [fromSuggestions, setFromSuggestions] = useState([]);
+    const [toSuggestions, setToSuggestions] = useState([]);
     
-    const handleFormSubmit = (e) => {
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(airports);
+            const text = await response.text();
+            Papa.parse(text, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: function (result) {
+                    setAirportData(result.data.slice(0, -1));
+                },
+            });
+        };
+        fetchData();
+    }, []);
+
+    const handleSelection = (iata, airportName, type) => {
+        if (type === 'from') {
+            setFromAirport(airportName);
+            setFromSuggestions([]);
+        } else {
+            setToAirport(airportName);
+            setToSuggestions([]);
+        }
+    };
+
+    const handleBlur = (type) => {
+        setTimeout(() => {
+            if(type === 'from') {
+                setFromSuggestions([]);
+            } else if(type === 'to') {
+                setToSuggestions([]);
+            }
+        }, 150); //delay
+    };
+
+    const suggest = (query, type) => {
+        if (query.length > 0) {
+            const suggestions = airportData
+                .filter(airport => airport.airport.toLowerCase().includes(query.toLowerCase()))
+                .slice(0, 5); 
+            
+            if(type === 'from') {
+                setFromSuggestions(suggestions);
+            } else if(type === 'to') {
+                setToSuggestions(suggestions);
+            }
+        } else {
+            if(type === 'from') {
+                setFromSuggestions([]);
+            } else if(type === 'to') {
+                setToSuggestions([]);
+            }
+        }
+    };
+
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        //placeholder for the form submit
+        const fromAirportData = airportData.find(a => a.iata === fromAirport || a.airport === fromAirport);
+        const toAirportData = airportData.find(a => a.iata === toAirport || a.airport === toAirport);
+        
+        const dataToSend = {
+            ...fromAirportData,
+            ...toAirportData,
+            departure: departureDate,
+            arrival: arrivalDate, 
+            passengers: passengers,
+        };
+        
+        try {
+            await axios.post('your-api-endpoint', dataToSend);
+            // Handle success
+        } catch (error) {
+            // Handle error
+        }
     };
 
     return (
         <form className="flight-search-form" onSubmit={handleFormSubmit}>
+        <div className="input-wrapper">
             <label htmlFor="fromAirport">From:</label>
-            <input type="text" id="fromAirport" value={fromAirport} onChange={(e) => setFromAirport(e.target.value)} required />
+            <input
+                type="text"
+                id="fromAirport"
+                value={fromAirport}
+                onChange={(e) => {
+                    setFromAirport(e.target.value);
+                    suggest(e.target.value, 'from');
+                }}
+                onBlur={() => handleBlur('from')}
+                required
+            />
+                {fromSuggestions && (
+                    <ul className="suggestions">
+                        {fromSuggestions.map((suggestion, idx) => (
+                            <li key={idx} onClick={() => handleSelection(suggestion.iata, suggestion.airport, 'from')}>
+                                {suggestion.airport} ({suggestion.iata})
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
 
-            <label htmlFor="toAirport">To:</label>
-            <input type="text" id="toAirport" value={toAirport} onChange={(e) => setToAirport(e.target.value)} required />
+            <div className="input-wrapper">
+                <label htmlFor="toAirport">To:</label>
+                <input
+                    type="text"
+                    id="toAirport"
+                    value={toAirport}
+                    onChange={(e) => {
+                        setToAirport(e.target.value);
+                        suggest(e.target.value, 'to');
+                    }}
+                    onBlur={() => handleBlur('to')}
+                    required
+                />
+                {toSuggestions && (
+                    <ul className="suggestions">
+                        {toSuggestions.map((suggestion, idx) => (
+                            <li key={idx} onClick={() => handleSelection(suggestion.iata, suggestion.airport, 'to')}>
+                                {suggestion.airport} ({suggestion.iata})
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
 
-            <label htmlFor="date">Date:</label>
-            <input type="date" id="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-
+            <label htmlFor="departure-date">Departure Date:</label>
+            <input type="date" id="departure-date" value={departureDate} onChange={(e) => setDeparture(e.target.value)} required />
+            
+            <label htmlFor="arrival-date">Arrival Date:</label>
+            <input type="date" id="arrival-date" value={arrivalDate} onChange={(e) => setArrival(e.target.value)} required />
+            
             <label htmlFor="passengers">Passengers:</label>
             <div className="passenger-input">
                 <button type="button" onClick={() => setPassengers(prev => Math.max(prev - 1, 1))}>-</button>
