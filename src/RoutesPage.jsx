@@ -7,7 +7,7 @@ const RoutesPage = () => {
   const [flightRoutes, setFlightRoutes] = useState([]);
   return (
     <div className='d-flex'>
-      <div className='w-25 m-5'>
+      <div className='w-25 m-5 position-relative'>
         <FlightSearchForm setFlightRoutes = {setFlightRoutes} />
       </div><div className='w-75 m-5'>
         <FlightList flightData={flightRoutes}/>

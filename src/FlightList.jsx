@@ -35,10 +35,10 @@ const FlightList = ({flightData}) => {
         ) : null
       }
         {selectedId ? 
-        <>
+        <div>
           <SelectedFlight data={flightData[selectedId - 1]}/>
           <a className="btn btn-primary m-4" onClick={(e) => handleBack(e)}>Go back</a>
-        </>
+        </div>
         : null}
     </>
   )
