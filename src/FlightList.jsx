@@ -32,7 +32,7 @@ const FlightList = () => {
         {selectedId ? 
         <>
           <SelectedFlight id={selectedId}/>
-          <a href="#" class="btn btn-primary m-4" onClick={(e) => handleBack(e)}>Go back</a>
+          <a className="btn btn-primary m-4" onClick={(e) => handleBack(e)}>Go back</a>
         </>
         : null}
     </>
