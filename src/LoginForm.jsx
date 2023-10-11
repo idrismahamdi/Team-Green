@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import UserFormFields from './UserFormFields';
-
+import './login.css';
+import logoText from './logotext.png';
+import { Footer } from './Footer';
 const url = 'http://18.168.101.57:3005/login';
 
 export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
@@ -31,11 +33,16 @@ export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
 
   return (
     <>
-      <form className="p-5" onSubmit={handleSubmit}>
+  <div className='container'>
+    <img className="logotext" src={logoText}/>
+      <form className="p-5" onSubmit={handleSubmit}>   
         <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} />
-        <button type="submit" className="btn btn-primary">Login</button>
+      <button className="loginbtn" type="submit" >Login</button>
       </form>
-      <Link to="/create-account" className="p-4">Don't have an account? Sign in here.</Link>
+      <Link to="/create-account" className="logintext">Don't have an account? Sign in here.</Link>
+   </div>
+   <Footer></Footer>
+
     </>
   );
 }
