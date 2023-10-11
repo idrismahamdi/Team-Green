@@ -4,7 +4,7 @@ import axios from 'axios';
 import Papa from 'papaparse';
 import airports from './flightdata/airports.csv';
 
-const FlightSearchForm = () => {
+const FlightSearchForm = ({setFlightRoutes}) => {
     const [airportData, setAirportData] = useState([]);
     const [fromAirport, setFromAirport] = useState('');
     const [toAirport, setToAirport] = useState('');
@@ -15,11 +15,8 @@ const FlightSearchForm = () => {
     const [toSuggestions, setToSuggestions] = useState([]);
     const [flightClass, setFlightClass] = useState('ECONOMY');
     const [maxPrice, setMaxPrice] = useState('');
-    const [flightRoutes, setFlightRoutes] = useState([]);
     
-    useEffect(() => {
-        console.log(flightRoutes);
-    }, [flightRoutes])
+   
 
     useEffect(() => {
         const fetchData = async () => {
