@@ -1,6 +1,5 @@
 package com.example.backend.services;
 
-import com.example.backend.WeatherRepo;
 import com.example.backend.entities.WeatherDTO;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,16 +10,9 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class WeatherService {
 
-    private final WeatherRepo repo;
-
-    public WeatherService(WeatherRepo repo){
-        super();
-        this.repo = repo;
-    }
-
-        public WeatherDTO requestWeather(WeatherDTO location) {
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
+        public WeatherDTO requestWeather(double latitude, double longitude) {
+//            double latitude = location.getLatitude();
+//            double longitude = location.getLongitude();
 //todo remove this rest template and inject one from config file
             RestTemplate restTemplate = new RestTemplate();
             String weatherUrl

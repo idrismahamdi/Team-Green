@@ -1,18 +1,6 @@
 package com.example.backend.entities;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import org.json.JSONObject;
-
-@Entity
 public class WeatherDTO {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    private int id;
     private double latitude;
     private double longitude;
     private double maxTemp;
@@ -56,7 +44,6 @@ public class WeatherDTO {
     @Override
     public String toString() {
         return "WeatherDTO{" +
-                "id=" + id +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", maxTemp=" + maxTemp +
@@ -74,7 +61,6 @@ public class WeatherDTO {
         this.maxWindspeed = maxWindspeed;
         this.maxPop = maxPop;
     }
-//    private DailyWeatherValues daily;
 
     public WeatherDTO() {
         super();
@@ -94,13 +80,4 @@ public class WeatherDTO {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
-
-    public int getId() {
-        return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-}
