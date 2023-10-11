@@ -21,7 +21,7 @@ const SelectedFlight = ({id}) => {
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">Departs at: {data.departureAt}</li>
                 <li className="list-group-item">Departure Terminal: {data.departureTerminal}</li>
-                <li className="list-group-item">A third item</li>
+                <li className="list-group-item">Total flight time: {data.duration}</li>
             </ul>            
         </div>
         </div>
@@ -33,7 +33,7 @@ const SelectedFlight = ({id}) => {
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">Arrives at: {data.arrivalAt}</li>
                 <li className="list-group-item">Arrival terminal: {data.arrivalTerminal}</li>
-                <li className="list-group-item">A third item</li>
+                <li className="list-group-item">Flight class: {data.flightClass}</li>
             </ul>
         </div>
         </div>
