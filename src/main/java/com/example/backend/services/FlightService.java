@@ -15,7 +15,6 @@ import java.util.ArrayList;
 @Service
 public class FlightService {
 
-//    @Value("${amadeus.api.accessToken}")
     private String accessToken; // Store your access token here
     private final FlightAuthentication refreshKey;
 
@@ -29,12 +28,11 @@ public class FlightService {
     public ArrayList<FlightDTO> processingFlightData(JSONObject json){
         JSONArray data = (JSONArray) json.get("data");
         ArrayList<FlightDTO> flightOffers = new ArrayList();
-//        FlightDTO flightdto = new FlightDTO();
-//        flightdto.setNumberOfBookableSeats(data.getInt());
-
+        //cycle through each flight in data object
         for (Object flight : data) {
+            //create a flight dto for each flight
             FlightDTO flightdto = new FlightDTO();
-
+            //populate with data
             JSONObject dataArray = (JSONObject) flight;
             flightdto.setNumberOfBookableSeats(dataArray.getInt("numberOfBookableSeats"));
             JSONArray itineraries =  dataArray.getJSONArray("itineraries");
@@ -46,13 +44,21 @@ public class FlightService {
 
             JSONObject departure = segment.getJSONObject("departure");
             flightdto.setDepartureIataCode(departure.getString("iataCode"));
-            flightdto.setDepartureTerminal(departure.getString("terminal"));
-            flightdto.setDepartureAt(departure.getString("at"));
 
+            try {
+                flightdto.setDepartureTerminal(departure.getString("terminal"));
+            } catch (Exception e) {
+                flightdto.setDepartureTerminal("TBC");
+            }
+            flightdto.setDepartureAt(departure.getString("at"));
 
             JSONObject arrival = segment.getJSONObject("arrival");
             flightdto.setArrivalIataCode(arrival.getString("iataCode"));
-            flightdto.setArrivalTerminal(arrival.getString("terminal"));
+            try {
+                flightdto.setArrivalTerminal(arrival.getString("terminal"));
+            } catch (Exception e) {
+                flightdto.setArrivalTerminal("TBC");
+            }
             flightdto.setArrivalAt(arrival.getString("at"));
 
 
@@ -64,28 +70,27 @@ public class FlightService {
             JSONArray fareDetailsBySegment =  travelerPrice.getJSONArray("fareDetailsBySegment");
             JSONObject fareDetailBySegment = (JSONObject) fareDetailsBySegment.get(0);
             flightdto.setFlightClass(fareDetailBySegment.getString("cabin"));
-
-
+            //add to list
             flightOffers.add(flightdto);
-
-
 
         }
         return flightOffers;
-
-
     }
-
-    public Object getFlightOffers(String deperature, String arrival, String date) {
+    public Object getFlightOffers(String departure, String arrival, String date, int noOfBookings,
+                                  String flightClass,
+                                  String maxPrice) {
         accessToken = refreshKey.authenticate();
         String url = "https://test.api.amadeus.com/v2/shopping/flight-offers" +
-                "?originLocationCode=" + deperature +
+                "?originLocationCode=" + departure +
                 "&destinationLocationCode=" + arrival +
                 "&departureDate=" + date +
-                "&adults=1" +
+                "&adults=" + noOfBookings +
+                "&travelClass=" + flightClass +
+                "&maxPrice=" + maxPrice +
+                "&currencyCode=GBP" +
                 "&nonStop=true" +
-                "&max=250";
-
+                "&max=10";
+        System.out.println(url);
         // Create HttpHeaders with the Authorization header using the access token
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
@@ -93,15 +98,9 @@ public class FlightService {
 
         RequestEntity<Object> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create(url));
 
-
-
         try{
             return  restTemplate.exchange(requestEntity, Object.class).getBody();
         } catch (HttpClientErrorException e) {
             throw new RuntimeException("Amadeus API request failed: " + e.getResponseBodyAsString(), e);
 
-
     }}}
-
-
-

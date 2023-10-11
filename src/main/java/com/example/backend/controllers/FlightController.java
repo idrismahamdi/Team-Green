@@ -31,10 +31,15 @@ public class FlightController {
     }
 
     @GetMapping("/flightroutes")
-    public ArrayList<FlightDTO> getFlightOffers(@RequestParam String deperature, @RequestParam String arrival, @RequestParam String date) throws JsonProcessingException {
-//       return amadeusService.getFlightOffers(deperature,arrival,date);
+    public ArrayList<FlightDTO> getFlightOffers(@RequestParam String departure,
+                                                @RequestParam String arrival,
+                                                @RequestParam String date,
+                                                @RequestParam int noOfBookings,
+                                                @RequestParam String flightClass,
+                                                @RequestParam String maxPrice) throws JsonProcessingException {
+//       return amadeusService.getFlightOffers(departure,arrival,date);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json = ow.writeValueAsString(amadeusService.getFlightOffers(deperature, arrival, date));
+        String json = ow.writeValueAsString(amadeusService.getFlightOffers(departure, arrival, date, noOfBookings, flightClass, maxPrice));
         JSONObject jsonBody = new JSONObject(json);
         return amadeusService.processingFlightData(jsonBody);
 
