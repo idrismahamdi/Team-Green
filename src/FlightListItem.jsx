@@ -1,16 +1,22 @@
 import React from 'react'
 import FlightInfo from './FlightInfo'
+import logo from './aeroplane.png'
 
-const FlightListItem = () => {
+const FlightListItem = ({flightInfo}) => {
     
 
   return (
-    <div className='d-flex justify-content-evenly'>
-        <FlightInfo airport="Edinburgh" departure="Diparture Time: 11:40"/>
+    <div className='d-flex justify-content-evenly flex-wrap'>
+        <FlightInfo 
+        departureIataCode={flightInfo.departureIataCode} 
+        departureAt={flightInfo.departureAt}/>
         <div className="w-25">
-        <img src="./aeroplane.png" alt='aeroplane image'/>
+        <img src={logo} alt='aeroplane image'/>
         </div>
-        <FlightInfo airport="New York" flightTime="5h 26m" arrival="Arrival Time: 17:09"/>
+        <FlightInfo 
+        arrivalIataCode={flightInfo.arrivalIataCode} 
+        duration={flightInfo.duration} 
+        arrivalAt={flightInfo.arrivalAt}/>
     </div>
   )
 }

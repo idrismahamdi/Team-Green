@@ -1,0 +1,93 @@
+[
+    {
+        "arrivalAt": "2023-10-11T17:40:00",
+        "arrivalIataCode": "CDG",
+        "arrivalTerminal": "2E",
+        "departureAt": "2023-10-11T15:20:00",
+        "departureIataCode": "LHR",
+        "departureTerminal": "4",
+        "duration": "PT1H20M",
+        "flightClass": "ECONOMY",
+        "grandtotal": "141.18",
+        "numberOfBookableSeats": 9,
+        "id":1
+    },
+    {
+        "arrivalAt": "2023-10-11T19:55:00",
+        "arrivalIataCode": "CDG",
+        "arrivalTerminal": "2E",
+        "departureAt": "2023-10-11T17:35:00",
+        "departureIataCode": "LHR",
+        "departureTerminal": "4",
+        "duration": "PT1H20M",
+        "flightClass": "ECONOMY",
+        "grandtotal": "141.18",
+        "numberOfBookableSeats": 9,
+        "id":2
+    },
+    {
+        "arrivalAt": "2023-10-11T20:00:00",
+        "arrivalIataCode": "CDG",
+        "arrivalTerminal": "TBC",
+        "departureAt": "2023-10-11T18:00:00",
+        "departureIataCode": "LHR",
+        "departureTerminal": "TBC",
+        "duration": "PT1H",
+        "flightClass": "ECONOMY",
+        "grandtotal": "199.48",
+        "numberOfBookableSeats": 9,
+        "id":3
+    },
+    {
+        "arrivalAt": "2023-10-11T14:25:00",
+        "arrivalIataCode": "CDG",
+        "arrivalTerminal": "1",
+        "departureAt": "2023-10-11T12:15:00",
+        "departureIataCode": "LHR",
+        "departureTerminal": "4",
+        "duration": "PT1H10M",
+        "flightClass": "ECONOMY",
+        "grandtotal": "199.48",
+        "numberOfBookableSeats": 9,
+        "id":4
+    },
+    {
+        "arrivalAt": "2023-10-11T15:40:00",
+        "arrivalIataCode": "CDG",
+        "arrivalTerminal": "TBC",
+        "departureAt": "2023-10-11T13:20:00",
+        "departureIataCode": "LHR",
+        "departureTerminal": "TBC",
+        "duration": "PT1H20M",
+        "flightClass": "ECONOMY",
+        "grandtotal": "199.48",
+        "numberOfBookableSeats": 9,
+        "id":5
+    },
+    {
+        "arrivalAt": "2023-10-11T20:40:00",
+        "arrivalIataCode": "CDG",
+        "arrivalTerminal": "TBC",
+        "departureAt": "2023-10-11T18:00:00",
+        "departureIataCode": "LHR",
+        "departureTerminal": "TBC",
+        "duration": "PT1H40M",
+        "flightClass": "ECONOMY",
+        "grandtotal": "199.48",
+        "numberOfBookableSeats": 9,
+        "id":6
+    },
+    {
+        "arrivalAt": "2023-10-11T13:50:00",
+        "arrivalIataCode": "CDG",
+        "arrivalTerminal": "2E",
+        "departureAt": "2023-10-11T11:30:00",
+        "departureIataCode": "LHR",
+        "departureTerminal": "4",
+        "duration": "PT1H20M",
+        "flightClass": "ECONOMY",
+        "grandtotal": "200.18",
+        "numberOfBookableSeats": 7,
+        "id":7
+    }
+]
