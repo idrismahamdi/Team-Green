@@ -48,7 +48,7 @@ function AuthenticatedApp() {
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      {/* <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> */}
       <Routes>
         <Route path="create-account" element={<CreateAccount />} />
         <Route path="login" element={isLoggedIn ? <Navigate to="/routes-page" /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />} />

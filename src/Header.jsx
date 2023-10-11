@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from './logo.png'
+import './header.css';
 
 const Header = ({ isLoggedIn, handleLogout, username }) => {
   return (
     <nav className="navbar bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand">Routes Team Green</a>
+        <a className="navbar-brand"><img  className="logo" src={logo}></img></a>
         
         {isLoggedIn ? (
           <>

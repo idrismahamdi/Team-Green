@@ -3,7 +3,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserFormFields from './UserFormFields';
 import { useNavigate } from 'react-router-dom';
-
+import './login.css';
+import logoText from './logotext.png';
+import logo from './logo.png';
+import { Footer } from './Footer';
 const url = 'http://18.168.101.57:3005/createaccount';
 
 export const CreateAccount = () => {
@@ -36,11 +39,16 @@ export const CreateAccount = () => {
 
   return (
     <>
+    <div className='container'>
+    <img className="logotext" src={logoText}/>
+
       <form className="p-5" onSubmit={handleSubmit}>
         <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} extraFields={extraFields} />
-        <button type="submit" className="btn btn-primary">Create Account</button>
+        <button type="submit" className="loginbtn">Create Account</button>
       </form>
-      <Link to="/login" className="p-4">Already have an account? Login here.</Link>
+      <Link to="/login" className="logintext">Already have an account? Login here.</Link>
+      </div>
+      <Footer/>
     </>
   );
 }
