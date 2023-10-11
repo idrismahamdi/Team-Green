@@ -6,12 +6,13 @@ import flightData from './flight.json'
 
 const FlightList = () => {
 
-  const [listOfFlights, setListOfFlights] = useState(flightData);
+  const [showSelected, setShowSelected] = useState(false);
   const [showList, setShowList] = useState(true);
 
     const handleClick = (e) => {
       console.log(`clicked ${e.target}`)
       setShowList(false);
+      setShowSelected(true);
       return 
     }
 
@@ -19,10 +20,13 @@ const FlightList = () => {
   return (
     <>
         
-        {showList ? listOfFlights.map(
+        {showList ? flightData.map(
         flightInfo => <li key={flightInfo.id} onClick={(e) => handleClick(e)}><FlightListItem flightInfo={flightInfo}/></li>
         ) : null
       }
+        {showSelected ? 
+        <SelectedFlight />
+        : null}
     </>
   )
 }
