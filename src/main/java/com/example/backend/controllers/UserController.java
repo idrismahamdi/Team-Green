@@ -27,10 +27,18 @@ public class UserController {
         return this.service.createUser(user);
     }
 
+
+
     @PostMapping("/login")
     public HashMap<String, Boolean> userLogin (@RequestBody User user, HttpSession session) throws NoSuchAlgorithmException {
         return this.service.userLogin(user, session);
     }
+
+    @PostMapping("/authenticate")
+    public boolean authenticateUser (HttpSession session) {
+        return this.service.userAuthentication(session);
+    }
+
 
     @PostMapping("/logout")
     public boolean userLogout (HttpSession session) throws NoSuchAlgorithmException {
