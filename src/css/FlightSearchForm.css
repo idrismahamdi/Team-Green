@@ -1,0 +1,56 @@
+.flight-search-form {
+    width: 33%;
+    position: absolute;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.passenger-input {
+    display: flex;
+    gap: 10px;
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    width: calc(100% - 2px);
+    background-color: white;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+}
+.suggestion:not(:hover){
+display: none;
+
+}
+.suggestions li {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.suggestions li:hover {
+    background-color: #ddd;
+}
+
+/* Hide the last border */
+.suggestions li:last-child {
+    border-bottom: none;
+}
+
+input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px; /* Or space as per your design needs */
+}
