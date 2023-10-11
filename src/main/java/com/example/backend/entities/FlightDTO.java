@@ -2,6 +2,7 @@ package com.example.backend.entities;
 
 public class FlightDTO {
 
+    private int id;
     private String duration;
     private String grandtotal;
 
@@ -16,7 +17,8 @@ public class FlightDTO {
     private int numberOfBookableSeats;
     private String flightClass;
 
-    public FlightDTO(String duration, String grandtotal, String departureIataCode, String departureAt, String departureTerminal, String arrivalIataCode, String arrivalAt, String arrivalTerminal, int numberOfBookableSeats, String flightClass) {
+    public FlightDTO(int id, String duration, String grandtotal, String departureIataCode, String departureAt, String departureTerminal, String arrivalIataCode, String arrivalAt, String arrivalTerminal, int numberOfBookableSeats, String flightClass) {
+        this.id = id;
         this.duration = duration;
         this.grandtotal = grandtotal;
         this.departureIataCode = departureIataCode;
@@ -32,6 +34,13 @@ public class FlightDTO {
     public FlightDTO() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getDuration() {
         return duration;
     }

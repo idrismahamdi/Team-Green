@@ -28,11 +28,14 @@ public class FlightService {
     public ArrayList<FlightDTO> processingFlightData(JSONObject json){
         JSONArray data = (JSONArray) json.get("data");
         ArrayList<FlightDTO> flightOffers = new ArrayList();
+        int i = 0;
         //cycle through each flight in data object
         for (Object flight : data) {
+            i++;
             //create a flight dto for each flight
             FlightDTO flightdto = new FlightDTO();
             //populate with data
+            flightdto.setId(i);
             JSONObject dataArray = (JSONObject) flight;
             flightdto.setNumberOfBookableSeats(dataArray.getInt("numberOfBookableSeats"));
             JSONArray itineraries =  dataArray.getJSONArray("itineraries");
@@ -61,7 +64,6 @@ public class FlightService {
             }
             flightdto.setArrivalAt(arrival.getString("at"));
 
-
             JSONObject price =  dataArray.getJSONObject("price");
             flightdto.setGrandtotal(price.getString("grandTotal"));
 
@@ -72,7 +74,6 @@ public class FlightService {
             flightdto.setFlightClass(fareDetailBySegment.getString("cabin"));
             //add to list
             flightOffers.add(flightdto);
-
         }
         return flightOffers;
     }
@@ -90,7 +91,6 @@ public class FlightService {
                 "&currencyCode=GBP" +
                 "&nonStop=true" +
                 "&max=10";
-        System.out.println(url);
         // Create HttpHeaders with the Authorization header using the access token
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
