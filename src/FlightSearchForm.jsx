@@ -160,6 +160,7 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
                     }}
                     onBlur={() => handleBlur('from')}
                     required
+                    autocomplete="off"
                 />
                 {fromSuggestions && (
                     <ul className="suggestions">
@@ -184,6 +185,7 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
                     }}
                     onBlur={() => handleBlur('to')}
                     required
+                    autocomplete="off"
                 />
                 {toSuggestions && (
                     <ul className="suggestions">
