@@ -19,6 +19,8 @@ function App() {
 function AuthenticatedApp() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [weather, setWeather] = useState({});
+  const [associatedLocations, setAssociatedLocations] = useState();
+
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -4,20 +4,27 @@ import axios from 'axios';
 import Papa from 'papaparse';
 import airports from './flightdata/airports.csv';
 import { Alert } from 'bootstrap';
+import sunny from './svgs/day.svg';
+import rainy from './svgs/rainy-6.svg';
+import cloudy from './svgs/cloudy-day-1.svg';
+import snowy from './svgs/snowy-5.svg';
+import thunder from './svgs/thunder.svg';
 
-const FlightSearchForm = ({setFlightRoutes}) => {
+const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations }) => {
     const [airportData, setAirportData] = useState([]);
     const [fromAirport, setFromAirport] = useState('');
     const [toAirport, setToAirport] = useState('');
     const [departureDate, setDeparture] = useState('');
-    
+
     const [passengers, setPassengers] = useState(1);
     const [fromSuggestions, setFromSuggestions] = useState([]);
     const [toSuggestions, setToSuggestions] = useState([]);
     const [flightClass, setFlightClass] = useState('ECONOMY');
     const [maxPrice, setMaxPrice] = useState('');
-    
-   
+    const [fromLL, setFromLL] = useState({});
+    const [toLL, setToLL] = useState({});
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,13 +42,15 @@ const FlightSearchForm = ({setFlightRoutes}) => {
         fetchData();
     }, []);
 
-    const handleSelection = (iata, airportName, type) => {
+    const handleSelection = (longitude, latitude, iata, airportName, type) => {
         if (type === 'from') {
             setFromAirport(iata);
             setFromSuggestions([]);
+            setFromLL({ longitude, latitude })
         } else {
             setToAirport(iata);
             setToSuggestions([]);
+            setToLL({ longitude, latitude })
         }
     };
 
@@ -84,20 +93,53 @@ const FlightSearchForm = ({setFlightRoutes}) => {
             ...fromAirportData,
             ...toAirportData,
             departure: departureDate,
-            
+
             passengers: passengers,
             flightClass: flightClass,
             maxPrice: parseFloat(maxPrice) || null,
         };
-        
+
         try {
-    
+
+            var flightReceived = false;
+
             const res = await axios.get(
                 `http://18.168.101.57:3005/api/flightroutes?departure=${fromAirport}&arrival=${toAirport}&date=${departureDate}&noOfBookings=${passengers}&flightClass=${flightClass}&maxPrice=${maxPrice}`
-                )
-            // Handle success
-            setFlightRoutes(res.data)
-        
+            ).then(data => {
+                flightReceived = true;
+                setFlightRoutes(data.data)
+            }).catch(function (error) {
+                setFlightRoutes([])
+                setAssociatedLocations(null)
+                setWeather(null)
+            });
+
+            if (flightReceived) {
+                axios.get(`http://18.168.101.57:3005/api/recommendations?airportArrivalCode=${toAirport}`).then(data => {
+                    setAssociatedLocations(data.data)
+                }).catch(function (error) {
+                    setAssociatedLocations(null)
+                });
+
+                axios.get(`http://18.168.101.57:3005/weather?latitude=${toLL.latitude}&longitude=${toLL.longitude}`).then(data => {
+                    const wD = data.data;
+                    if (wD.maxPop > 90) {
+                        wD.icon = thunder;
+                    } else if (wD.maxPop > 70) {
+                        wD.icon = rainy;
+                    } else if (wD.maxWindSpeed > 30) {
+                        wD.icon = cloudy;
+                    } else if (wD.minTemp < 0) {
+                        wD.icon = snowy;
+                    } else {
+                        wD.icon = sunny;
+                    }
+                    setWeather(wD)
+                }).catch(function (error) {
+                    setWeather(null)
+                });
+            }
+
         } catch (error) {
             // Handle error
             console.log(error)
@@ -122,7 +164,7 @@ const FlightSearchForm = ({setFlightRoutes}) => {
                 {fromSuggestions && (
                     <ul className="suggestions">
                         {fromSuggestions.map((suggestion, idx) => (
-                            <li key={idx} onClick={() => handleSelection(suggestion.iata, suggestion.airport, 'from')}>
+                            <li key={idx} onClick={() => handleSelection(suggestion.longitude, suggestion.latitude, suggestion.iata, suggestion.airport, 'from')}>
                                 {suggestion.airport} ({suggestion.iata})
                             </li>
                         ))}
@@ -145,11 +187,11 @@ const FlightSearchForm = ({setFlightRoutes}) => {
                 />
                 {toSuggestions && (
                     <ul className="suggestions">
-                        {toSuggestions.map((suggestion, idx) => (
-                            <li key={idx} onClick={() => handleSelection(suggestion.iata, suggestion.airport, 'to')}>
+                        {toSuggestions.map((suggestion, idx) => {
+                            return (<li key={idx} onClick={() => handleSelection(suggestion.longitude, suggestion.latitude, suggestion.iata, suggestion.airport, 'to')}>
                                 {suggestion.airport} ({suggestion.iata})
-                            </li>
-                        ))}
+                            </li>)
+                        })}
                     </ul>
                 )}
             </div>
