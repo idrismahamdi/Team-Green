@@ -69,6 +69,8 @@ function AuthenticatedApp() {
             <RoutesPage username={userName} />
           </NavGuard>
         } />
+                        <Route path="/" element={isLoggedIn ? <Navigate to="/routes-page" replace /> : <Navigate to="/login" replace />} />
+
       </Routes>
     </>
   );
