@@ -5,7 +5,6 @@ import UserFormFields from './UserFormFields';
 import './login.css';
 import logoText from './logotext.png';
 import { Footer } from './Footer';
-import Weather from './components/Weather';
 const url = 'http://18.168.101.57:3005/login';
 
 export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
@@ -42,7 +41,6 @@ export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
         </form>
         <Link to="/create-account" className="logintext">Don't have an account? Sign in here.</Link>
       </div>
-      <Weather weather={null} />
       <Footer></Footer>
 
     </>

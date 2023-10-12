@@ -1,0 +1,12 @@
+.AssociatedLocationsCities {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+.AssociatedLocationsDiv {
+    width: 50%;
+    text-align: center;
+}
