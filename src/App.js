@@ -7,7 +7,11 @@ import Header from './Header';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import FlightSearchForm from './FlightSearchForm';
+
+import NavGuard from './NavGuard';
+
 import { Footer } from './Footer';
+
 
 function App() {
   return (
@@ -17,8 +21,11 @@ function App() {
   );
 }
 
-function AuthenticatedApp() {
+function AuthenticatedApp() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [weather, setWeather] = useState({});
+  const [associatedLocations, setAssociatedLocations] = useState();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,9 +60,11 @@ function AuthenticatedApp() {
       <Routes>
         <Route path="create-account" element={<CreateAccount />} />
         <Route path="login" element={isLoggedIn ? <Navigate to="/routes-page" /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="routes-page" element={<RoutesPage />} />
-        <Route path="flights-search-form" element={<FlightSearchForm />} />
-
+        <Route path="routes-page" element={
+                    <NavGuard isLoggedIn={isLoggedIn}>
+                        <RoutesPage />
+                    </NavGuard>
+                } />
       </Routes>
       <Footer />
     </>
