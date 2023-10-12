@@ -1,0 +1,115 @@
+.form-control {
+  border-radius: 10px;
+  border: 5px solid #1A1919;
+  background: rgba(206, 206, 206, 0.5);
+  box-shadow: 6px 8px 2px 8px #000;
+  width: 50%;
+  margin: auto;
+}
+
+.logotext {
+  height: 40%;
+  margin-bottom: 0px;
+  width: 70%;
+}
+
+.p-5 {
+  padding: 0 !important;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  background-image: transparent;
+  background-color: transparent;
+}
+
+body {
+  background-image: linear-gradient(rgb(78, 201, 199), rgb(17, 153, 17));
+}
+
+.flight-list-container{
+  margin: auto;
+}
+
+.form-label {
+  padding-top: 10px;
+  color: #000;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.68px;
+}
+
+.container {
+  margin-top: 0px;
+  padding-bottom: 250px;
+  position: relative;
+  height: auto; /* Adjusted height to accommodate content */
+  width: 100%; /* Width set to 100% to prevent overflow */
+  background-color: transparent; /* Corrected typo 'tran' to 'transparent' */
+  text-align: center;
+}
+
+.loginbtn {
+  border-radius: 20px;
+  border: 2px solid #000;
+  background: rgba(206, 206, 206, 0.5);
+  margin: 50px auto;
+  color: #000;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.68px;
+  width: 50%;
+  box-shadow: 6px 14px 2px 13px #000;
+}
+
+.logintext {
+  color: #342424;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.28px;
+  text-align: center;
+}
+
+.WeatherDiv {
+  margin: auto auto 20px auto;
+
+}
+.AssociatedLocationsDiv{
+  margin: auto;
+}
+/* Style the footer */
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: #333;
+  padding: 20px;
+}
+
+/* Style the logo */
+.logo {
+  display: inline-block;
+}
+
+.logo img {
+  max-width: 100%;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  footer {
+    padding: 10px;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import UserFormFields from './UserFormFields';
-import './login.css';
+import './login2.css';
 import logoText from './logotext.png';
 import { Footer } from './Footer';
 const url = 'http://18.168.101.57:3005/login';

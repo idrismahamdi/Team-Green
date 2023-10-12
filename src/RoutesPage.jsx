@@ -4,7 +4,7 @@ import FlightSearchForm from './FlightSearchForm'
 import { useState } from 'react'
 import Weather from './components/Weather';
 import AssociatedLocations from './components/AssociatedLocations';
-
+import { Footer } from './Footer';
 
 const RoutesPage = () => {
   const [flightRoutes, setFlightRoutes] = useState([]);
@@ -12,17 +12,20 @@ const RoutesPage = () => {
   const [associatedLocations, setAssociatedLocations] = useState();
 
   return (
-
+<>
     <div className='d-flex grid-container'>
       <div className='w-25 m-5 position-relative item2'>
         <FlightSearchForm setFlightRoutes={setFlightRoutes} setWeather={setWeather} setAssociatedLocations={setAssociatedLocations} />
       </div>
-      <div className='w-75 m-5 item3'>
-        {flightRoutes.length > 0 ? <FlightList flightData={flightRoutes} /> : <h3>No flights available with selected search options.</h3>}
-      </div>
+      <div className='w-100 item3'>
       {weather && <Weather weather={weather} />}
       {associatedLocations && <AssociatedLocations associatedLocations={associatedLocations} />}
+        {flightRoutes.length > 0 ? <FlightList flightData={flightRoutes} /> : <h3>No flights available with selected search options.</h3>}
+      </div>
+      
     </div>
+    <Footer> </Footer>
+    </>
   )
 }
 

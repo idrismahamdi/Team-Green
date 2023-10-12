@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import FlightListItem from './FlightListItem'
 import SelectedFlight from './SelectedFlight'
 
-import Weather from './components/Weather';
-import AssociatedLocations from './components/AssociatedLocations';
 
 import './login.css'
 
@@ -30,6 +28,7 @@ const FlightList = ({ flightData }) => {
   return (
 
     <div className='flight-list-container'>
+      
       {showList ? flightData.map(flightInfo => {
         let index = flightData.indexOf(flightInfo) + 1;
         return <li key={index} onClick={(e) => handleClick(e, index)}><FlightListItem flightInfo={flightInfo} /></li>
