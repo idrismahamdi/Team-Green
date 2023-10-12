@@ -6,7 +6,7 @@ import RoutesPage from './RoutesPage';
 import Header from './Header';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import FlightSearchForm from './FlightSearchForm';
+import NavGuard from './NavGuard';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
   );
 }
 
-function AuthenticatedApp() {
+function AuthenticatedApp() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -48,13 +48,15 @@ function AuthenticatedApp() {
 
   return (
     <>
-      {/* <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> */}
+      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Routes>
         <Route path="create-account" element={<CreateAccount />} />
         <Route path="login" element={isLoggedIn ? <Navigate to="/routes-page" /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="routes-page" element={<RoutesPage />} />
-        <Route path="flights-search-form" element={<FlightSearchForm />} />
-
+        <Route path="routes-page" element={
+                    <NavGuard isLoggedIn={isLoggedIn}>
+                        <RoutesPage />
+                    </NavGuard>
+                } />
       </Routes>
     </>
   );
