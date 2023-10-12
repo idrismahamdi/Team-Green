@@ -6,7 +6,7 @@ import Weather from './components/Weather';
 import AssociatedLocations from './components/AssociatedLocations';
 import { Footer } from './Footer';
 
-const RoutesPage = () => {
+const RoutesPage = ({ username }) => {
   const [flightRoutes, setFlightRoutes] = useState([]);
   const [weather, setWeather] = useState();
   const [associatedLocations, setAssociatedLocations] = useState();
