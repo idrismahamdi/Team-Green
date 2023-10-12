@@ -70,7 +70,6 @@ function AuthenticatedApp() {
           </NavGuard>
         } />
       </Routes>
-      <Footer />
     </>
   );
 }
