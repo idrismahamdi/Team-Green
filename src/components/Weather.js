@@ -7,7 +7,7 @@ const Weather = ({ weather }) => {
                 <>
                     <div id="weatherIconTemp">
                         <img src={weather.icon} />
-                        <h4 id="tempText">{weather.maxTemp}</h4>
+                        <h4 id="tempText">{weather.maxTemp}&deg;C</h4>
                     </div>
                     <div id="weatherExtraInfo">
                         <p id="extraInfoText">Precipitation:&nbsp;{weather.maxPop}%</p>
