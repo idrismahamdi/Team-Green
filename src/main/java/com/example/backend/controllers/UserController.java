@@ -30,7 +30,7 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public HashMap<String, Boolean> userLogin (@RequestBody User user, HttpSession session) throws NoSuchAlgorithmException {
+    public HashMap<String, Object> userLogin (@RequestBody User user, HttpSession session) throws NoSuchAlgorithmException {
         return this.service.userLogin(user, session);
     }
 
@@ -62,13 +62,13 @@ public class UserController {
         // not for end users, just for testing
     }
 
-//    @DeleteMapping("/deleteaccount/{username}")
-//    public void deleteUser(@PathVariable String username){
-//        this.service.removeByUserName(username);
-//        // didn't work, try by id
-//    }
-    @DeleteMapping("/deleteaccount/{id}") public void deleteUser(@PathVariable int id){
-        this.service.removeById(id);}
+    @DeleteMapping("/deleteaccount/{username}")
+    public void deleteUser(@PathVariable String username){
+        this.service.removeByUserName(username);
+        // didn't work, try by id
+    }
+//    @DeleteMapping("/deleteaccount/{id}") public void deleteUser(@PathVariable int id){
+//        this.service.removeById(id);}
 
     @GetMapping("/health")
     public String health(){

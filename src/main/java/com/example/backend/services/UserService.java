@@ -81,11 +81,11 @@ public boolean userAuthentication (HttpSession session) {
 
     }
 
-    public HashMap<String, Boolean> userLogin(User user, HttpSession session) throws NoSuchAlgorithmException {
+    public HashMap<String, Object> userLogin(User user, HttpSession session) throws NoSuchAlgorithmException {
 
         // TODO: Refactor Please.
 
-        HashMap<String, Boolean> returnValue = new HashMap<>();
+        HashMap<String, Object> returnValue = new HashMap<>();
 
         try {
 
@@ -101,6 +101,7 @@ public boolean userAuthentication (HttpSession session) {
                 User existingUser = repo.findUserByUserName(user.getUserName());
                 if (Objects.equals(user.getUserName(), existingUser.getUserName()) && hashedPassword.equals(existingUser.getPassword())) {
                     returnValue.put("userLoggedIn", true);
+                    returnValue.put("userName", user.getUserName());
                     session.setAttribute("id", existingUser.getId());
                     session.setAttribute("isLoggedIn", true);
                 } else {
@@ -144,12 +145,12 @@ public boolean userAuthentication (HttpSession session) {
         // not for end users, just for testing
     }
 
-//    public void removeByUserName(String username){
-//        this.repo.deleteUserByUserName(username);
-//        //this didn't work for some reason, try deleting by id
-//    }
-
-    public void removeById (int id){
-        this.repo.deleteById(id);
+    public void removeByUserName(String username){
+        this.repo.deleteUserByUserName(username);
+        //this didn't work for some reason, try deleting by id
     }
+
+//    public void removeById (int id){
+//        this.repo.deleteById(id);
+//    }
 }
