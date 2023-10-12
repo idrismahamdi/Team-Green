@@ -1,0 +1,21 @@
+.AssociatedLocationsCities {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+.AssociatedLocationsDiv {
+    width: 50%;
+    text-align: center;
+    height: fit-content;
+    background: white;
+    border: solid black;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.AssociatedLocationsCities p {
+    margin-bottom: 0;
+}

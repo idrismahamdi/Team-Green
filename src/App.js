@@ -1,11 +1,12 @@
 import './App.css';
-import {CreateAccount} from './CreateAccount';
+import { CreateAccount } from './CreateAccount';
 import { LoginForm } from './LoginForm';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import RoutesPage from './RoutesPage';
 import Header from './Header';
 import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import FlightSearchForm from './FlightSearchForm';
 import NavGuard from './NavGuard';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
 
 function AuthenticatedApp() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [weather, setWeather] = useState({});
+  const [associatedLocations, setAssociatedLocations] = useState();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +30,7 @@ function AuthenticatedApp() {
         const res = await axios.post('http://18.168.101.57:3005/authenticate');
         setIsLoggedIn(res.data.userLoggedIn);
         const user = JSON.parse(localStorage.getItem("user"));
-        
+
       } catch (error) {
         console.error('Error checking login status:', error);
         setIsLoggedIn(false);
