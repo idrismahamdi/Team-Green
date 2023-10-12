@@ -1,16 +1,8 @@
 import React from 'react'
-import flightData from './flight.json'
 
-const SelectedFlight = ({id}) => {
+const SelectedFlight = ({data}) => {
     
-
-    let data;
-    for(let flight of flightData){
-        if(flight.id === id) {
-            data = flight;
-            break;
-        }
-    }
+  
     
   return (
     <div className="row">

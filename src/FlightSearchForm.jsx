@@ -3,18 +3,22 @@ import './css/FlightSearchForm.css';
 import axios from 'axios';
 import Papa from 'papaparse';
 import airports from './flightdata/airports.csv';
+import { Alert } from 'bootstrap';
 
-const FlightSearchForm = () => {
+const FlightSearchForm = ({setFlightRoutes}) => {
     const [airportData, setAirportData] = useState([]);
     const [fromAirport, setFromAirport] = useState('');
     const [toAirport, setToAirport] = useState('');
     const [departureDate, setDeparture] = useState('');
-    const [arrivalDate, setArrival] = useState('');
+    
     const [passengers, setPassengers] = useState(1);
     const [fromSuggestions, setFromSuggestions] = useState([]);
     const [toSuggestions, setToSuggestions] = useState([]);
     const [flightClass, setFlightClass] = useState('ECONOMY');
     const [maxPrice, setMaxPrice] = useState('');
+    
+   
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(airports);
@@ -33,10 +37,10 @@ const FlightSearchForm = () => {
 
     const handleSelection = (iata, airportName, type) => {
         if (type === 'from') {
-            setFromAirport(airportName);
+            setFromAirport(iata);
             setFromSuggestions([]);
         } else {
-            setToAirport(airportName);
+            setToAirport(iata);
             setToSuggestions([]);
         }
     };
@@ -76,22 +80,27 @@ const FlightSearchForm = () => {
         const fromAirportData = airportData.find(a => a.iata === fromAirport || a.airport === fromAirport);
         const toAirportData = airportData.find(a => a.iata === toAirport || a.airport === toAirport);
 
-        const dataToSend = {
+        const userFlightData = {
             ...fromAirportData,
             ...toAirportData,
             departure: departureDate,
-            arrival: arrivalDate,
+            
             passengers: passengers,
             flightClass: flightClass,
             maxPrice: parseFloat(maxPrice) || null,
         };
-
-
+        
         try {
-            await axios.post('your-api-endpoint', dataToSend);
+    
+            const res = await axios.get(
+                `http://18.168.101.57:3005/api/flightroutes?departure=${fromAirport}&arrival=${toAirport}&date=${departureDate}&noOfBookings=${passengers}&flightClass=${flightClass}&maxPrice=${maxPrice}`
+                )
             // Handle success
+            setFlightRoutes(res.data)
+        
         } catch (error) {
             // Handle error
+            console.log(error)
         }
     };
 
@@ -147,9 +156,6 @@ const FlightSearchForm = () => {
 
             <label htmlFor="departure-date">Departure Date:</label>
             <input type="date" id="departure-date" value={departureDate} onChange={(e) => setDeparture(e.target.value)} required />
-
-            <label htmlFor="arrival-date">Arrival Date:</label>
-            <input type="date" id="arrival-date" value={arrivalDate} onChange={(e) => setArrival(e.target.value)} required />
 
             <label htmlFor="passengers">Passengers:</label>
             <div className="passenger-input">
