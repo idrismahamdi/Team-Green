@@ -1,7 +1,16 @@
+.card{ 
+  border-radius: 10px;
+  border: 5px solid #1A1919;
+  background: rgba(206, 206, 206, 0.5);
+  box-shadow: 1px 3px 2px 2px #000;
+  
 
-
-
-
+  margin: auto;
+  padding-bottom: 4px;
+}
+.AssociatedLocationsCities{
+  margin-bottom: 0px;
+}
 .form-control {
   border-radius: 10px;
   border: 5px solid #1A1919;
@@ -14,6 +23,11 @@
   padding-bottom: 4px;
   
 }
+.lipadding{
+  margin-bottom: 20px; /* Adjust the value as per your spacing needs */
+
+}
+
 .suggestions{
   border: transparent;
 }
@@ -96,7 +110,7 @@ body {
   text-align: center;
   overflow: auto;
   padding: 10px; */
-  margin-top: 0px;
+  margin-top: 10px;
   margin-bottom: 20px; /* Add margin to the bottom to create space above the footer */
   position: relative;
   height: 100%;
@@ -214,7 +228,7 @@ li {
 .item3 {
   /* grid-area: right; */
   overflow: auto;
-  max-height: 70vh;
+  max-height: 75vh;
   padding-bottom: 20px;
 }
 
@@ -247,3 +261,4 @@ li {
     /* Expand to full width */
   }
 }
+
