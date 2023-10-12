@@ -7,7 +7,11 @@ import Header from './Header';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import FlightSearchForm from './FlightSearchForm';
+
 import NavGuard from './NavGuard';
+
+import { Footer } from './Footer';
+
 
 function App() {
   return (
@@ -62,6 +66,7 @@ function AuthenticatedApp() {
                     </NavGuard>
                 } />
       </Routes>
+      <Footer />
     </>
   );
 }

@@ -5,18 +5,20 @@ import { useState } from 'react'
 import Weather from './components/Weather';
 import AssociatedLocations from './components/AssociatedLocations';
 
+
 const RoutesPage = () => {
   const [flightRoutes, setFlightRoutes] = useState([]);
   const [weather, setWeather] = useState();
   const [associatedLocations, setAssociatedLocations] = useState();
 
   return (
-    <div className='d-flex h-100'>
-      <div className='w-25 m-5 position-relative'>
+
+    <div className='d-flex grid-container'>
+      <div className='w-25 m-5 position-relative item2'>
         <FlightSearchForm setFlightRoutes={setFlightRoutes} setWeather={setWeather} setAssociatedLocations={setAssociatedLocations} />
       </div>
-      <div className='w-75 m-5 h-75' style={{ overflow: "scroll" }}>
-        {flightRoutes.length > 0 ? <FlightList flightData={flightRoutes} weather={weather} associatedLocations={associatedLocations} /> : <h3>No flights available with selected search options.</h3>}
+      <div className='w-75 m-5 item3'>
+        {flightRoutes.length > 0 ? <FlightList flightData={flightRoutes} /> : <h3>No flights available with selected search options.</h3>}
       </div>
       {weather && <Weather weather={weather} />}
       {associatedLocations && <AssociatedLocations associatedLocations={associatedLocations} />}

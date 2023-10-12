@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './css/FlightSearchForm.css';
+import './login.css';
 import axios from 'axios';
 import Papa from 'papaparse';
 import airports from './flightdata/airports.csv';
@@ -11,6 +12,7 @@ import snowy from './svgs/snowy-5.svg';
 import thunder from './svgs/thunder.svg';
 
 const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations }) => {
+
     const [airportData, setAirportData] = useState([]);
     const [fromAirport, setFromAirport] = useState('');
     const [toAirport, setToAirport] = useState('');
@@ -21,8 +23,10 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
     const [toSuggestions, setToSuggestions] = useState([]);
     const [flightClass, setFlightClass] = useState('ECONOMY');
     const [maxPrice, setMaxPrice] = useState('');
+
     const [fromLL, setFromLL] = useState({});
     const [toLL, setToLL] = useState({});
+
 
 
 
@@ -140,6 +144,7 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
                 });
             }
 
+
         } catch (error) {
             // Handle error
             console.log(error)
@@ -147,10 +152,11 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
     };
 
     return (
-        <form className="flight-search-form" onSubmit={handleFormSubmit}>
+        <form className="form-control-search" onSubmit={handleFormSubmit}>
             <div className="input-wrapper">
-                <label htmlFor="fromAirport">From:</label>
+                <label className='form-label' htmlFor="fromAirport">From:</label>
                 <input
+                    className='form-control'
                     type="text"
                     id="fromAirport"
                     value={fromAirport}
@@ -174,7 +180,7 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
             </div>
 
             <div className="input-wrapper">
-                <label htmlFor="toAirport">To:</label>
+                <label className='form-label' htmlFor="toAirport">To:</label>
                 <input
                     type="text"
                     id="toAirport"
@@ -198,17 +204,17 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
                 )}
             </div>
 
-            <label htmlFor="departure-date">Departure Date:</label>
+            <label className='form-label' htmlFor="departure-date">Departure Date:</label>
             <input type="date" id="departure-date" value={departureDate} onChange={(e) => setDeparture(e.target.value)} required />
 
-            <label htmlFor="passengers">Passengers:</label>
+            <label className='form-label' htmlFor="passengers">Passengers:</label>
             <div className="passenger-input">
                 <button type="button" onClick={() => setPassengers(prev => Math.max(prev - 1, 1))}>-</button>
                 <input type="number" id="passengers" min="1" value={passengers} onChange={(e) => setPassengers(Math.max(Number(e.target.value), 1))} required />
                 <button type="button" onClick={() => setPassengers(prev => prev + 1)}>+</button>
             </div>
 
-            <label htmlFor="flightClass">Flight Class:</label>
+            <label className='form-label' htmlFor="flightClass">Flight Class:</label>
             <select
                 id="flightClass"
                 value={flightClass}
@@ -220,7 +226,7 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
                 <option value="FIRST">First</option>
             </select>
 
-            <label htmlFor="maxPrice">Maximum Price:</label>
+            <label className='form-label' htmlFor="maxPrice">Maximum Price:</label>
             <input
                 type="number"
                 id="maxPrice"
