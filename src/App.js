@@ -11,6 +11,7 @@ import FlightSearchForm from './FlightSearchForm';
 import NavGuard from './NavGuard';
 
 import { Footer } from './Footer';
+import DeleteAccount from './DeleteAccount';
 
 
 function App() {
@@ -21,10 +22,11 @@ function App() {
   );
 }
 
-function AuthenticatedApp() { 
+function AuthenticatedApp() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [weather, setWeather] = useState({});
   const [associatedLocations, setAssociatedLocations] = useState();
+  const [userName, setUserName] = useState("");
 
   const navigate = useNavigate();
 
@@ -47,6 +49,7 @@ function AuthenticatedApp() {
     try {
       await axios.post('http://18.168.101.57:3005/logout');
       setIsLoggedIn(false);
+      setUserName("");
       localStorage.removeItem("user");
       navigate('/login'); // Redirect user to login
     } catch (error) {
@@ -56,15 +59,16 @@ function AuthenticatedApp() {
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} username={userName} />
       <Routes>
         <Route path="create-account" element={<CreateAccount />} />
-        <Route path="login" element={isLoggedIn ? <Navigate to="/routes-page" /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="login" element={isLoggedIn ? <Navigate to="/routes-page" /> : <LoginForm setIsLoggedIn={setIsLoggedIn} setUsername={setUserName} />} />
+        <Route path="delete-account" element={<DeleteAccount handleLogout={handleLogout} username={userName} />} />
         <Route path="routes-page" element={
-                    <NavGuard isLoggedIn={isLoggedIn}>
-                        <RoutesPage />
-                    </NavGuard>
-                } />
+          <NavGuard isLoggedIn={isLoggedIn}>
+            <RoutesPage username={userName} />
+          </NavGuard>
+        } />
       </Routes>
       <Footer />
     </>

@@ -15,13 +15,14 @@ export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(url, { userName: userEmail, password: userPassword });
+      const res = await axios.post(url, { userName: userEmail, password: userPassword })
 
       localStorage.setItem("user", JSON.stringify({ userName: userEmail }));
-      console.log(res.data.userLoggedIn);
       setIsLoggedIn(res.data.userLoggedIn);
-      setUsername(userEmail);
-      if (res.data.userLoggedIn) { navigate('/routes-page') } else {
+      setUsername(res.data.userName);
+      if (res.data.userLoggedIn) {
+        navigate('/routes-page');
+      } else {
         alert("Not authenticated")
       }
 
