@@ -31,7 +31,7 @@ const FlightList = ({ flightData }) => {
       
       {showList ? flightData.map(flightInfo => {
         let index = flightData.indexOf(flightInfo) + 1;
-        return <li key={index} onClick={(e) => handleClick(e, index)}><FlightListItem flightInfo={flightInfo} /></li>
+        return <li key={index} onClick={(e) => handleClick(e, index)} className='lipadding'><FlightListItem flightInfo={flightInfo} /></li>
       }
       ) : null
       }

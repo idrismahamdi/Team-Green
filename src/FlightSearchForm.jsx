@@ -112,6 +112,7 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
             ).then(data => {
                 flightReceived = true;
                 setFlightRoutes(data.data)
+                console.log(data.data)
             }).catch(function (error) {
                 setFlightRoutes([])
                 setAssociatedLocations(null)
@@ -206,12 +207,12 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
             </div>
 
             <label className='form-label' htmlFor="departure-date">Departure Date:</label>
-            <input type="date"className='form-control'id="departure-date" value={departureDate} onChange={(e) => setDeparture(e.target.value)} required />
+            <input type="date" className='form-control'id="departure-date" value={departureDate} onChange={(e) => setDeparture(e.target.value)} required />
 
             <label className='form-label' htmlFor="passengers">Passengers:</label>
             <div  className="passenger-input">
                 {/* <button type="button" onClick={() => setPassengers(prev => Math.max(prev - 1, 1))}>-</button> */}
-                <input className='form-control'type="number" id="passengers" min="1" value={passengers} onChange={(e) => setPassengers(Math.max(Number(e.target.value), 1))} required />
+                <input className='form-control'type="number" id="passengers" min="1" max="9" value={passengers} onChange={(e) => setPassengers(Math.max(Number(e.target.value), 1))} required />
                 {/* <button type="button" onClick={() => setPassengers(prev => prev + 1)}>+</button> */}
             </div>
 
@@ -234,6 +235,7 @@ const FlightSearchForm = ({ setFlightRoutes, setWeather, setAssociatedLocations 
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
                 placeholder="Enter max price"
+                
                 step="5.00"
             />
 
