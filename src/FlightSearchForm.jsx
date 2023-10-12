@@ -3,6 +3,7 @@ import './css/FlightSearchForm.css';
 import axios from 'axios';
 import Papa from 'papaparse';
 import airports from './flightdata/airports.csv';
+import { Alert } from 'bootstrap';
 
 const FlightSearchForm = ({setFlightRoutes}) => {
     const [airportData, setAirportData] = useState([]);
@@ -88,13 +89,12 @@ const FlightSearchForm = ({setFlightRoutes}) => {
             flightClass: flightClass,
             maxPrice: parseFloat(maxPrice) || null,
         };
-
         
         try {
     
             const res = await axios.get(
                 `http://18.168.101.57:3005/api/flightroutes?departure=${fromAirport}&arrival=${toAirport}&date=${departureDate}&noOfBookings=${passengers}&flightClass=${flightClass}&maxPrice=${maxPrice}`
-                );
+                )
             // Handle success
             setFlightRoutes(res.data)
         

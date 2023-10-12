@@ -5,17 +5,14 @@ import SelectedFlight from './SelectedFlight'
 
 
 const FlightList = ({flightData}) => {
-  useEffect(() => {
-    console.log(flightData);
-  }, [flightData])
   
   const [selectedId, setSelectedId] = useState(0);
   const [showList, setShowList] = useState(true);
 
   
-    const handleClick = (e, flightId) => {   
+    const handleClick = (e, flightIndex) => {   
       setShowList(false);
-      setSelectedId(flightId);            
+      setSelectedId(flightIndex);            
       return 
     }
 
@@ -23,7 +20,6 @@ const FlightList = ({flightData}) => {
       setSelectedId(0);
       setShowList(true);
     }
-
     
   return (
     <>

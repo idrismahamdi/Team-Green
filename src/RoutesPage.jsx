@@ -10,7 +10,7 @@ const RoutesPage = () => {
       <div className='w-25 m-5 position-relative'>
         <FlightSearchForm setFlightRoutes = {setFlightRoutes} />
       </div><div className='w-75 m-5'>
-        <FlightList flightData={flightRoutes}/>
+        {flightRoutes.length > 0 ? <FlightList flightData={flightRoutes}/> : <h3>No flights available with selected search options.</h3> }
       </div>
     </div>
   )
