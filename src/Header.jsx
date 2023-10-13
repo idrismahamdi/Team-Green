@@ -13,7 +13,9 @@ const Header = ({ isLoggedIn, handleLogout, username }) => {
           <>
             <h3>Welcome {username}!</h3>
             <button className="btn btn-outline-success" type="button" onClick={handleLogout}>Logout</button>
-            <Link className="btn btn-outline-success" to="/delete-account">Delete Account</Link>
+            {window.location.pathname != "/delete-account" ?
+              <Link className="btn btn-outline-danger" to="/delete-account">Delete Account</Link> :
+              <Link className="btn btn-outline-success" to="/routes-page">Go Back</Link>}
           </>
         ) : (
           <Link className="btn btn-outline-success" to="/login">Login</Link>

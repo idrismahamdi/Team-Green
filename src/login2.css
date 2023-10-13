@@ -13,6 +13,12 @@
   width: 70%;
 }
 
+#logotext {
+  font-size: 8rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+}
+
 .p-5 {
   padding: 0 !important;
 }
@@ -28,7 +34,7 @@ body {
   background-image: linear-gradient(rgb(78, 201, 199), rgb(17, 153, 17));
 }
 
-.flight-list-container{
+.flight-list-container {
   margin: auto;
 }
 
@@ -47,18 +53,21 @@ body {
   margin-top: 0px;
   padding-bottom: 250px;
   position: relative;
-  height: auto; /* Adjusted height to accommodate content */
-  width: 100%; /* Width set to 100% to prevent overflow */
-  background-color: transparent; /* Corrected typo 'tran' to 'transparent' */
+  height: auto;
+  /* Adjusted height to accommodate content */
+  width: 100%;
+  /* Width set to 100% to prevent overflow */
+  background-color: transparent;
+  /* Corrected typo 'tran' to 'transparent' */
   text-align: center;
 }
 
 .loginbtn {
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid #000;
   background: rgba(206, 206, 206, 0.5);
   margin: 50px auto;
-  color: #000;
+  color: black;
   font-family: Inter;
   font-size: 22px;
   font-style: normal;
@@ -66,7 +75,7 @@ body {
   line-height: normal;
   letter-spacing: 1.68px;
   width: 50%;
-  box-shadow: 6px 14px 2px 13px #000;
+  box-shadow: 6px 5px 2px 5px #000;
 }
 
 .logintext {
@@ -84,9 +93,11 @@ body {
   margin: auto auto 20px auto;
 
 }
-.AssociatedLocationsDiv{
+
+.AssociatedLocationsDiv {
   margin: auto;
 }
+
 /* Style the footer */
 footer {
   position: absolute;
@@ -111,5 +122,17 @@ footer {
 @media (max-width: 768px) {
   footer {
     padding: 10px;
+  }
+}
+
+@media (max-width: 972px) {
+  #logotext {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 460px) {
+  #logotext {
+    font-size: 2rem;
   }
 }

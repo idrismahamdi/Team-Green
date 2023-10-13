@@ -35,7 +35,7 @@ export const LoginForm = ({ setIsLoggedIn, setUsername }) => {
     <>
       {error.status && <ErrorPopup errorHeader={error.header} errorBody={error.body} closeFunc={() => setError({ status: false })} />}
       <div className='container'>
-        <img className="logotext" src={logoText} />
+        <h1 id='logotext'>Get Your Way</h1>
         <form className="p-5" onSubmit={handleSubmit}>
           <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} />
           <button className="loginbtn" type="submit" >Login</button>

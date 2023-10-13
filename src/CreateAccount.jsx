@@ -17,7 +17,7 @@ export const CreateAccount = () => {
   const extraFields = (
     <div className="mb-3">
       <label className="form-label" htmlFor='confirmPassword'>Confirm Password</label>
-      <input type="password" className="form-control" id="confirmPassword" onChange={event => setConfirmPassword(event.target.value)} value={confirmPassword}/>
+      <input type="password" className="form-control" id="confirmPassword" onChange={event => setConfirmPassword(event.target.value)} value={confirmPassword} />
     </div>
   );
 
@@ -30,7 +30,7 @@ export const CreateAccount = () => {
     }
     try {
       const res = await axios.post(url, { userName: userEmail, password: userPassword });
-      console.log(res.data); 
+      console.log(res.data);
       navigate('/login');
     } catch (error) {
       console.log(error.response);
@@ -39,16 +39,16 @@ export const CreateAccount = () => {
 
   return (
     <>
-    <div className='container'>
-    <img className="logotext" src={logoText}/>
+      <div className='container'>
+        <h1 id='logotext'>Get Your Way</h1>
 
-      <form className="p-5" onSubmit={handleSubmit}>
-        <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} extraFields={extraFields} />
-        <button type="submit" className="loginbtn">Create Account</button>
-      </form>
-      <Link to="/login" className="logintext">Already have an account? Login here.</Link>
+        <form className="p-5" onSubmit={handleSubmit}>
+          <UserFormFields userEmail={userEmail} setUserEmail={setUserEmail} userPassword={userPassword} setUserPassword={setUserPassword} extraFields={extraFields} />
+          <button type="submit" className="loginbtn">Create Account</button>
+        </form>
+        <Link to="/login" className="logintext">Already have an account? Login here.</Link>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

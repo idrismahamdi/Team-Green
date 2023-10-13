@@ -25,12 +25,11 @@ const DeleteAccount = ({ handleLogout, username }) => {
 
     return (
 
-        <div className="card w-25">
+        <div className="card w-25 mt-5">
             <img src={profile} className="card-img-top" alt="profile picture" />
             <div className="card-body">
                 <h5 className="card-title">Are you sure you want to delete your account?</h5>
-                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-                <Link to="/routes-page"><a className="btn btn-primary">Go Back</a></Link>
+                <div className='d-flex justify-content-center'><button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button></div>
             </div>
         </div>
 
