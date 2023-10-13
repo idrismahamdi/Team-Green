@@ -1,34 +1,38 @@
-.card{ 
+.card {
   border-radius: 10px;
   border: 5px solid #1A1919;
   background: rgba(206, 206, 206, 0.5);
   box-shadow: 1px 3px 2px 2px #000;
-  
+
 
   margin: auto;
   padding-bottom: 4px;
 }
-.AssociatedLocationsCities{
+
+.AssociatedLocationsCities {
   margin-bottom: 0px;
 }
+
 .form-control {
   border-radius: 10px;
   border: 5px solid #1A1919;
   background: rgba(206, 206, 206, 0.5);
   box-shadow: 1px 3px 2px 2px #000;
   width: 50%;
-  
+
 
   margin: auto;
   padding-bottom: 4px;
-  
-}
-.lipadding{
-  margin-bottom: 20px; /* Adjust the value as per your spacing needs */
 
 }
 
-.suggestions{
+.lipadding {
+  margin-bottom: 20px;
+  /* Adjust the value as per your spacing needs */
+
+}
+
+.suggestions {
   border: transparent;
 }
 
@@ -41,7 +45,7 @@
   height: 100%;
   margin: auto;
 
-  
+
 
 }
 
@@ -92,11 +96,13 @@ body {
   text-align: center; */
 
   margin-top: 0px;
-  margin-bottom: 20px; /* Add margin to the bottom to create space above the footer */
+  margin-bottom: 20px;
+  /* Add margin to the bottom to create space above the footer */
   position: relative;
   height: 75vh;
   width: 100vw;
-  background-color: transparent; /* Corrected typo 'tran' to 'transparent' */
+  background-color: transparent;
+  /* Corrected typo 'tran' to 'transparent' */
   text-align: center;
 
 }
@@ -111,17 +117,19 @@ body {
   overflow: auto;
   padding: 10px; */
   margin-top: 10px;
-  margin-bottom: 20px; /* Add margin to the bottom to create space above the footer */
+  margin-bottom: 20px;
+  /* Add margin to the bottom to create space above the footer */
   position: relative;
   height: 100%;
   width: 75%;
-  background-color: transparent; /* Corrected typo 'tran' to 'transparent' */
+  background-color: transparent;
+  /* Corrected typo 'tran' to 'transparent' */
   text-align: center;
   overflow: auto;
   padding: 10px;
 }
 
-.defaultbtn{
+.defaultbtn {
   /* display: block;
   margin: 20px auto 0;
   border-radius: 20px;
@@ -136,7 +144,8 @@ body {
   width: 50%;
   text-align: center; */
   display: block;
-  margin: 20px auto 10px; /* Add margin to the top to create some space */
+  margin: 20px auto 10px;
+  /* Add margin to the top to create some space */
   border-radius: 20px;
   border: 2px solid #000;
   background: rgba(206, 206, 206, 0.5);
@@ -150,13 +159,13 @@ body {
   text-align: center;
 }
 
-.loginbtn {
-  /* position: relative; */
-  /* top: 20%; */
-  /* left: 50%; */
-  /* transform: translate(-50%, -50%); */
-  /* Your button styles */
-  border-radius: 20px;
+/* .loginbtn { */
+/* position: relative; */
+/* top: 20%; */
+/* left: 50%; */
+/* transform: translate(-50%, -50%); */
+/* Your button styles */
+/* border-radius: 20px;
   border: 2px solid #000;
   background: rgba(206, 206, 206, 0.5);
   margin: 50px auto;
@@ -170,7 +179,7 @@ body {
   width: 50%;
   box-shadow: 6px 14px 2px 13px #000;
 
-}
+} */
 
 .logintext {
   color: #342424;
@@ -201,7 +210,8 @@ footer {
   text-align: center;
   background-color: #333;
   padding: 20px;
-  margin-top: 20px; /* Add margin to push the content above the footer */
+  margin-top: 20px;
+  /* Add margin to push the content above the footer */
   display: block;
 }
 
@@ -261,4 +271,3 @@ li {
     /* Expand to full width */
   }
 }
-
