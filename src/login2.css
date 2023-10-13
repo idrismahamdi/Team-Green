@@ -118,6 +118,10 @@ footer {
   max-width: 100%;
 }
 
+.cursor:hover {
+  cursor: pointer;
+}
+
 /* Media query for mobile screens */
 @media (max-width: 768px) {
   footer {

@@ -28,17 +28,17 @@ const FlightList = ({ flightData }) => {
   return (
 
     <div className='flight-list-container'>
-      
+
       {showList ? flightData.map(flightInfo => {
         let index = flightData.indexOf(flightInfo) + 1;
-        return <li key={index} onClick={(e) => handleClick(e, index)} className='lipadding'><FlightListItem flightInfo={flightInfo} /></li>
+        return <li key={index} onClick={(e) => handleClick(e, index)} className='lipadding cursor'><FlightListItem flightInfo={flightInfo} /></li>
       }
       ) : null
       }
       {selectedId ?
         <div>
           <SelectedFlight data={flightData[selectedId - 1]} />
-          <a className="btn btn-primary m-4" onClick={(e) => handleBack(e)}>Go back</a>
+          <a className="btn btn-light m-4" onClick={(e) => handleBack(e)}>Go Back</a>
         </div>
         : null}
     </div>

@@ -13,7 +13,7 @@ const Header = ({ isLoggedIn, handleLogout, username }) => {
           <>
             <h3>Welcome {username}!</h3>
 
-            {window.location.pathname != "/delete-account" ?
+            {window.location.pathname !== "/delete-account" ?
               <Link className="btn btn-outline-success" to="/delete-account">Account</Link> :
               <Link className="btn btn-outline-success" to="/routes-page">Go Back</Link>}
           </>
